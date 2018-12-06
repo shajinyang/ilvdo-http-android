@@ -1,8 +1,7 @@
-package com.ilvdo.ilvdo_http_android
+package com.test.ilvdo_http_android
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
