@@ -5,5 +5,7 @@ package com.ilvdo.ilvdo_http_android.restclient
  * Describe 网络请求构建器
  */
 class RestClientBuilder {
-
+    fun build():RestClient{
+        return RestClient()
+    }
 }
