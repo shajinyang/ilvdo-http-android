@@ -10,10 +10,9 @@ import com.ilvdo.ilvdo_http_android.IlvdoHttp
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
         IlvdoHttp.init(this)
-            .withApiHost("https://www.baidu.com/")
+            .withApiHost("https://api.apiopen.top/")
+            .logEnable(true)
             .config()
-
     }
 }

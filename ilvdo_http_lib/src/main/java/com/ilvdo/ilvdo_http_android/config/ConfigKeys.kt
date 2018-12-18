@@ -7,6 +7,8 @@ package com.ilvdo.ilvdo_http_android.config
 enum class ConfigKeys {
     //域名
     API_HOST,
+    //是否打印网络请求日志
+    ENABLE_LOG,
     //全局上下文
     APPLICATION_CONTEXT,
     //拦截器
@@ -15,5 +17,4 @@ enum class ConfigKeys {
     NETWORK_INTERCEPT,
     //配置tag
     CONFIG_READY
-
 }

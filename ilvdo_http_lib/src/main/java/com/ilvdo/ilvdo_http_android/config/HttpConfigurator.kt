@@ -14,11 +14,15 @@ class HttpConfigurator private constructor(){
     private val HTTP_CONFIGS = Hashtable<Any, Any>()
     private val INTERCEPTORS = HashSet<Interceptor>()
     private val NETWORK_INTERCEPTORS = HashSet<Interceptor>()
-
+    //打印日志标识，默认不打印
+    private var LOG_ENABLE=false
 
     init {
         //开始配置标记
         HTTP_CONFIGS[ConfigKeys.CONFIG_READY]=false
+        HTTP_CONFIGS[ConfigKeys.INTERCEPT]=INTERCEPTORS
+        HTTP_CONFIGS[ConfigKeys.NETWORK_INTERCEPT]=NETWORK_INTERCEPTORS
+        HTTP_CONFIGS[ConfigKeys.ENABLE_LOG]=LOG_ENABLE
     }
 
     companion object {
@@ -63,6 +67,14 @@ class HttpConfigurator private constructor(){
         return this
     }
 
+    /**
+     * 设置是否打印日志
+     */
+    fun logEnable(enable:Boolean):HttpConfigurator{
+        HTTP_CONFIGS[ConfigKeys.ENABLE_LOG]=enable
+        return this
+    }
+
 
     fun config(){
         HTTP_CONFIGS[ConfigKeys.CONFIG_READY]=true
@@ -73,7 +85,7 @@ class HttpConfigurator private constructor(){
      * 检查配置是否完成
      */
     private fun checkConfig(){
-        val isReady =getConfig<Boolean>(ConfigKeys.CONFIG_READY)
+        val isReady =HTTP_CONFIGS[ConfigKeys.CONFIG_READY] as Boolean
         if(!isReady){
             throw RuntimeException("Configuration is not not ready,please config http first")
         }
@@ -83,7 +95,7 @@ class HttpConfigurator private constructor(){
     /**
      * 获取配置
      */
-    fun <T> getConfig(key: ConfigKeys):T{
+    fun <T> getConfig(key: Any):T{
         checkConfig()
         return HTTP_CONFIGS[key] as T
     }

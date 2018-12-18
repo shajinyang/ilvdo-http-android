@@ -40,6 +40,10 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
+    //rx
+    api "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
+    api "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
+
     //fastjson
     implementation "com.alibaba:fastjson:$fastjson_version"
 }

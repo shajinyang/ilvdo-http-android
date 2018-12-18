@@ -1,6 +1,6 @@
 package com.ilvdo.ilvdo_http_android.retrofit.api
 
-import io.reactivex.Observable
+import io.reactivex.Flowable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -14,30 +14,30 @@ import java.util.*
 interface ApiService {
 
     @GET
-    fun get(@Url url: String, @QueryMap params: WeakHashMap<String, Any>): Observable<String>
+    fun get(@Url url: String?, @QueryMap params: WeakHashMap<String, Any>): Flowable<String>
 
     @FormUrlEncoded
     @POST
-    fun post(@Url url: String, @FieldMap params: WeakHashMap<String, Any>): Observable<String>
+    fun post(@Url url: String, @FieldMap params: WeakHashMap<String, Any>): Flowable<String>
 
     @POST
-    fun postRaw(@Url url: String, @Body body: RequestBody): Observable<String>
+    fun postRaw(@Url url: String, @Body body: RequestBody): Flowable<String>
 
     @FormUrlEncoded
     @PUT
-    fun put(@Url url: String, @FieldMap params: WeakHashMap<String, Any>): Observable<String>
+    fun put(@Url url: String, @FieldMap params: WeakHashMap<String, Any>): Flowable<String>
 
     @PUT
-    fun putRaw(@Url url: String, @Body body: RequestBody): Observable<String>
+    fun putRaw(@Url url: String, @Body body: RequestBody): Flowable<String>
 
     @DELETE
-    fun delete(@Url url: String, @QueryMap params: WeakHashMap<String, Any>): Observable<String>
+    fun delete(@Url url: String, @QueryMap params: WeakHashMap<String, Any>): Flowable<String>
 
     @Streaming
     @GET
-    fun download(@Url url: String, @QueryMap params: WeakHashMap<String, Any>): Observable<ResponseBody>
+    fun download(@Url url: String, @QueryMap params: WeakHashMap<String, Any>): Flowable<ResponseBody>
 
     @Multipart
     @POST
-    fun upload(@Url url: String, @Part file: MultipartBody.Part): Observable<String>
+    fun upload(@Url url: String, @Part file: MultipartBody.Part): Flowable<String>
 }
