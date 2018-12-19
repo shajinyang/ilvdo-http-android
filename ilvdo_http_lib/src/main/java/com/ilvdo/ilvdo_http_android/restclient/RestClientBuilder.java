@@ -21,7 +21,6 @@ public class RestClientBuilder {
     private  IOnEnd IEND;
     private  IGetDisposable IGETDISPOSABLE;
     private  Class<?> CONVERT_BEAN;
-    private  Class<?> CONVERT_LIST_BEAN;
 
     public RestClientBuilder params(String key,Object value){
         PARAMS.put(key,value);
@@ -38,6 +37,10 @@ public class RestClientBuilder {
             return this;
     }
 
+    public RestClientBuilder convert(Class<?> CONVERT_BEAN){
+        this.CONVERT_BEAN=CONVERT_BEAN;
+        return this;
+    }
     public RestClientBuilder file(File file){
             this.FILE=file;
             return this;
@@ -77,6 +80,6 @@ public class RestClientBuilder {
                 , IEND
                 , IGETDISPOSABLE
                 , CONVERT_BEAN
-                , CONVERT_LIST_BEAN);
+                );
     }
 }

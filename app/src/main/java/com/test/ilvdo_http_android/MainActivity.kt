@@ -6,6 +6,7 @@ import com.ilvdo.ilvdo_http_android.callback.*
 import com.ilvdo.ilvdo_http_android.restclient.RestClient
 import com.test.ilvdo_http_android.bean.ResponseBean
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
             .params("page","1")
             .params("count","5")
             .url("getSongPoetry")
+            .convert(ResponseBean::class.java)
             .start(object :IOnStart{
                 override fun onStart() {
 
@@ -28,9 +30,8 @@ class MainActivity : AppCompatActivity() {
             })
             .success(object :IOnSuccess<ResponseBean>{
                 override fun onSuccess(t: ResponseBean) {
-
+                    tv_content.text = t.message
                 }
-
             })
 
             .failure(object : IOnFailure {
