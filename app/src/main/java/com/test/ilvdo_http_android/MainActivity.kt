@@ -2,6 +2,7 @@ package com.test.ilvdo_http_android
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.ilvdo.ilvdo_http_android.callback.*
 import com.ilvdo.ilvdo_http_android.restclient.RestClient
 import com.test.ilvdo_http_android.bean.ResponseBean
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         getData()
+        Log.e("heh","")
     }
 
     private fun getData(){
