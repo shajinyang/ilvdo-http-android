@@ -13,6 +13,9 @@ class MyApplication : Application() {
         IlvdoHttp.init(this)
             .withApiHost("https://api.apiopen.top/")
             .logEnable(true)
+
             .config()
     }
+
+
 }

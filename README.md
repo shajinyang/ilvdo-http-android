@@ -14,7 +14,7 @@
 - 支持异步同步请求
 - 底层库基于Okhttp 和 retrofit
 
-### 如何使用
+### 如何配置网络库
 
 第一步：在项目的gradle里配置
 
@@ -33,6 +33,167 @@
          implementation 'com.github.shajinyang:akita:1.2.1'
      }
 ```
+
+### 如何使用
+
+#### 初始化，推荐在application里进行初始化
+
+快速初始化
+```
+IlvdoHttp.init(this)
+            .withApiHost("https://api.apiopen.top/") //网络请求主域名
+            .config()
+```
+
+初始化额外配置（可选）
+```
+IlvdoHttp.init(this)
+            .withApiHost("https://api.apiopen.top/") //网络请求主域名
+            .logEnable(true) //是否开启日志打印，默认关闭
+            .withIntercept(intercept1)// 配置okhttp拦截器，可添加多个
+            .withNetIntercept(intercept2)//配置okhttp拦截器，可添加多个
+            .config()
+```
+
+#### 网络请求
+
+快速发起一个get请求示例
+```
+RestClient
+            .builder()
+            .type(RestType.GET)
+            .params("param","1")
+            .url("test/test/")
+            .convert(ResponseBean::class.java)
+            .success(object :IOnSuccess<ResponseBean>{
+                override fun onSuccess(t: ResponseBean) {
+
+                }
+            })
+            .build()
+```
+
+
+详细使用方法api
+
+网络请求（键值对传参）
+
+```
+RestClient
+            .builder()
+            .type(RestType.GET) //请求方式，可切换 get  post   json 等等
+            .params("page","1") //键值对传参
+            .params("count","5") //键值对传参
+            .url("test/test/") //接口路径
+            .convert(ResponseBean::class.java) //接受的实体类
+            .start(object :IOnStart{
+                override fun onStart() {
+                   // todo   请求开始前的逻辑处理
+                }
+            })
+            .success(object :IOnSuccess<ResponseBean>{
+                override fun onSuccess(t: ResponseBean) {
+                    // todo  成功
+                }
+            })
+
+            .failure(object : IOnFailure {
+                override fun onFailure(throwable: Throwable) {
+                    // todo 失败
+                }
+            })
+            .end(object : IOnEnd {
+                override fun onEnd() {
+                    // todo 结束
+                }
+            })
+            .getDisposable(object :IGetDisposable{
+                override fun getDisposable(disposable: Disposable) {
+                    // 返回  该请求的 disposable 对象，可取消
+                }
+            })
+            .build()
+```
+
+网络请求（对象传参）
+可以直接传递对象请求参数，网络库会将对象转为键值对
+
+```
+RestClient
+            .builder()
+            .type(RestType.GET) //请求方式，可切换 get  post  json 等等
+            .objParam(requestBean) //对象传参
+            .url("test/test/") //接口路径
+            .convert(ResponseBean::class.java) //接受的实体类
+            .start(object :IOnStart{
+                override fun onStart() {
+                   // todo   请求开始前的逻辑处理
+                }
+            })
+            .success(object :IOnSuccess<ResponseBean>{
+                override fun onSuccess(t: ResponseBean) {
+                    // todo  成功
+                }
+            })
+
+            .failure(object : IOnFailure {
+                override fun onFailure(throwable: Throwable) {
+                    // todo 失败
+                }
+            })
+            .end(object : IOnEnd {
+                override fun onEnd() {
+                    // todo 结束
+                }
+            })
+            .getDisposable(object :IGetDisposable{
+                override fun getDisposable(disposable: Disposable) {
+                    // 返回  该请求的 disposable 对象，可取消
+                }
+            })
+            .build()
+```
+
+网络请求（Json传参）
+
+```
+RestClient
+            .builder()
+            .type(RestType.JSON) //请求方式，可切换 get  post  json 等等
+            .objParam(requestBean) //对象传参
+            .url("test/test/") //接口路径
+            .convert(ResponseBean::class.java) //接受的实体类
+            .start(object :IOnStart{
+                override fun onStart() {
+                   // todo   请求开始前的逻辑处理
+                }
+            })
+            .success(object :IOnSuccess<ResponseBean>{
+                override fun onSuccess(t: ResponseBean) {
+                    // todo  成功
+                }
+            })
+
+            .failure(object : IOnFailure {
+                override fun onFailure(throwable: Throwable) {
+                    // todo 失败
+                }
+            })
+            .end(object : IOnEnd {
+                override fun onEnd() {
+                    // todo 结束
+                }
+            })
+            .getDisposable(object :IGetDisposable{
+                override fun getDisposable(disposable: Disposable) {
+                    // 返回  该请求的 disposable 对象，可取消
+                }
+            })
+            .build()
+```
+
+
+
 
 
 

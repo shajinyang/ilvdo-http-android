@@ -21,6 +21,7 @@ public class RestClientBuilder {
     private  IOnEnd IEND;
     private  IGetDisposable IGETDISPOSABLE;
     private  Class<?> CONVERT_BEAN;
+    private RestType REQUEST_TYPE;
 
     public RestClientBuilder params(String key,Object value){
         PARAMS.put(key,value);
@@ -30,6 +31,11 @@ public class RestClientBuilder {
     public RestClientBuilder objParam(Object objParam){
         this.OBJECT_PARAM=objParam;
             return this;
+    }
+
+    public RestClientBuilder type(RestType requestType){
+        this.REQUEST_TYPE=requestType;
+        return this;
     }
 
     public RestClientBuilder url(String url){
@@ -71,7 +77,8 @@ public class RestClientBuilder {
 
     public RestClient build(){
         return new RestClient(
-                OBJECT_PARAM
+                REQUEST_TYPE
+                ,OBJECT_PARAM
                 , URL
                 , FILE
                 , ISUCCESS
