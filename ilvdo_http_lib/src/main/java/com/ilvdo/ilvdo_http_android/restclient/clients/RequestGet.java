@@ -42,9 +42,7 @@ public class RequestGet extends AbstractRequest {
                     public void accept(String s) throws Exception {
                         if(null!=ISUCCESS){
                             if(CONVERT_BEAN!=null){
-                                if(ConvertUtil.json2Bean(s,CONVERT_BEAN)!=null){
-                                    ISUCCESS.onSuccess(ConvertUtil.json2Bean(s,CONVERT_BEAN));
-                                }
+                                  ISUCCESS.onSuccess(ConvertUtil.json2JavaBean(s,CONVERT_BEAN));
                             }
                         }
                     }

@@ -33,10 +33,18 @@ class MainActivity : AppCompatActivity() {
                     Log.d("httpccc","开始")
                 }
             })
-            .success(object :IOnSuccess<String>{
-                override fun onSuccess(t: String) {
-
-                    tv_content.text= t
+            .success(object :IOnSuccess<ResponseBean>{
+                override fun onSuccess(t: ResponseBean) {
+                    val conStr=StringBuffer()
+                    for (`a` in t.result){
+                        conStr.append(a.title)
+                            .append("\n")
+                            .append(a.authors)
+                            .append("\n")
+                            .append(a.content)
+                            .append("\n\n")
+                    }
+                    tv_content.text=conStr.toString()
                 }
             })
 

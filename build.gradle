@@ -16,7 +16,7 @@ buildscript {
     ext.rxandroidVersion='2.0.2'
     ext.rxjavaVersion="2.1.9"
     //fastjson
-    ext.fastjson_version='1.1.68.android'
+    ext.fastjson_version='1.1.70.android'
 
 
     repositories {
