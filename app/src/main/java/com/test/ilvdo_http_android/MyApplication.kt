@@ -11,7 +11,7 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         IlvdoHttp.init(this)
-            .withApiHost("https://api.apiopen.top/")
+            .withApiHost("https://api.apiopen.top/recommendPoetry/")
             .logEnable(true)
 
             .config()

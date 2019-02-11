@@ -10,6 +10,7 @@ import com.test.ilvdo_http_android.bean.ReqBean
 import com.test.ilvdo_http_android.bean.ResponseBean
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,36 +26,28 @@ class MainActivity : AppCompatActivity() {
             .type(RestType.GET)
             .params("page","1")
             .params("count","5")
-            .url("getSongPoetry")
-            .convert(ResponseBean::class.java)
+            .url("")
+            .convert(String::class.java)
             .start(object :IOnStart{
                 override fun onStart() {
-
+                    Log.d("httpccc","开始")
                 }
             })
-            .success(object :IOnSuccess<ResponseBean>{
-                override fun onSuccess(t: ResponseBean) {
-                    val conStr=StringBuffer()
-                    for (`a` in t.result){
-                        conStr.append(a.title)
-                            .append("\n")
-                            .append(a.authors)
-                            .append("\n")
-                            .append(a.content)
-                            .append("\n\n")
-                    }
-                    tv_content.text=conStr.toString()
+            .success(object :IOnSuccess<String>{
+                override fun onSuccess(t: String) {
+
+                    tv_content.text= t
                 }
             })
 
             .failure(object : IOnFailure {
                 override fun onFailure(throwable: Throwable) {
-
+                    Log.d("httpccc",throwable.message)
                 }
             })
             .end(object : IOnEnd {
                 override fun onEnd() {
-
+                    Log.d("httpccc","结束")
                 }
             })
             .getDisposable(object :IGetDisposable{
