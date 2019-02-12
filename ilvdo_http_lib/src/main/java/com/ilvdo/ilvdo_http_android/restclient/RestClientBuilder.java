@@ -1,5 +1,6 @@
 package com.ilvdo.ilvdo_http_android.restclient;
 
+import com.alibaba.fastjson.TypeReference;
 import com.ilvdo.ilvdo_http_android.callback.*;
 import com.ilvdo.ilvdo_http_android.retrofit.RetrofitCreator;
 
@@ -20,13 +21,19 @@ public class RestClientBuilder {
     private  IOnStart ISTART;
     private  IOnEnd IEND;
     private  IGetDisposable IGETDISPOSABLE;
-    private  Class<?> CONVERT_BEAN;
     private RestType REQUEST_TYPE;
+    private TypeReference typeReference;
 
     public RestClientBuilder params(String key,Object value){
         PARAMS.put(key,value);
         return this;
     }
+
+    public RestClientBuilder convertType(TypeReference typeReference){
+        this.typeReference=typeReference;
+        return this;
+    }
+
 
     public RestClientBuilder objParam(Object objParam){
         this.OBJECT_PARAM=objParam;
@@ -43,10 +50,6 @@ public class RestClientBuilder {
             return this;
     }
 
-    public RestClientBuilder convert(Class<?> CONVERT_BEAN){
-        this.CONVERT_BEAN=CONVERT_BEAN;
-        return this;
-    }
     public RestClientBuilder file(File file){
             this.FILE=file;
             return this;
@@ -75,6 +78,8 @@ public class RestClientBuilder {
 
 
 
+
+
     public RestClient build(){
         return new RestClient(
                 REQUEST_TYPE
@@ -86,7 +91,7 @@ public class RestClientBuilder {
                 , ISTART
                 , IEND
                 , IGETDISPOSABLE
-                , CONVERT_BEAN
+                ,typeReference
                 );
     }
 }

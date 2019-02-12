@@ -1,5 +1,6 @@
 package com.ilvdo.ilvdo_http_android.restclient.clients;
 
+import com.alibaba.fastjson.TypeReference;
 import com.ilvdo.ilvdo_http_android.callback.*;
 import com.ilvdo.ilvdo_http_android.retrofit.RetrofitCreator;
 
@@ -20,9 +21,9 @@ public abstract class AbstractRequest {
     protected  IOnStart ISTART;
     protected  IOnEnd IEND;
     protected  IGetDisposable IGETDISPOSABLE;
-    protected  Class<?> CONVERT_BEAN;
+    protected  TypeReference CONVERT_BEAN;
 
-    public AbstractRequest( Object OBJECT_PARAM, String URL, File FILE, IOnSuccess ISUCCESS, IOnFailure IONFAILURE, IOnStart ISTART, IOnEnd IEND, IGetDisposable IGETDISPOSABLE, Class<?> CONVERT_BEAN) {
+    public AbstractRequest( Object OBJECT_PARAM, String URL, File FILE, IOnSuccess ISUCCESS, IOnFailure IONFAILURE, IOnStart ISTART, IOnEnd IEND, IGetDisposable IGETDISPOSABLE, TypeReference CONVERT_BEAN) {
         this.OBJECT_PARAM = OBJECT_PARAM;
         this.URL = URL;
         this.FILE = FILE;

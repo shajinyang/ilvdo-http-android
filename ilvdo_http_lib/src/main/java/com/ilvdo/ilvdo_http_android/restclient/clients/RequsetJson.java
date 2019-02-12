@@ -1,6 +1,7 @@
 package com.ilvdo.ilvdo_http_android.restclient.clients;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.ilvdo.ilvdo_http_android.callback.*;
 import com.ilvdo.ilvdo_http_android.convert.ConvertUtil;
 import com.ilvdo.ilvdo_http_android.retrofit.RetrofitCreator;
@@ -20,7 +21,7 @@ import java.io.File;
  */
 public class RequsetJson extends AbstractRequest {
 
-    public RequsetJson(Object OBJECT_PARAM, String URL, File FILE, IOnSuccess ISUCCESS, IOnFailure IONFAILURE, IOnStart ISTART, IOnEnd IEND, IGetDisposable IGETDISPOSABLE, Class<?> CONVERT_BEAN) {
+    public RequsetJson(Object OBJECT_PARAM, String URL, File FILE, IOnSuccess ISUCCESS, IOnFailure IONFAILURE, IOnStart ISTART, IOnEnd IEND, IGetDisposable IGETDISPOSABLE, TypeReference CONVERT_BEAN) {
         super(OBJECT_PARAM, URL, FILE, ISUCCESS, IONFAILURE, ISTART, IEND, IGETDISPOSABLE, CONVERT_BEAN);
     }
 
@@ -41,8 +42,9 @@ public class RequsetJson extends AbstractRequest {
                     public void accept(String s) throws Exception {
                         if(null!=ISUCCESS){
                             if(CONVERT_BEAN!=null){
-                                if(ConvertUtil.json2Bean(s,CONVERT_BEAN)!=null){
-                                    ISUCCESS.onSuccess(ConvertUtil.json2Bean(s,CONVERT_BEAN));
+                                Object convertBean=ConvertUtil.json2JavaBean(s,CONVERT_BEAN);
+                                if(convertBean!=null){
+                                    ISUCCESS.onSuccess(convertBean);
                                 }
                             }
                         }

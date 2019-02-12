@@ -1,5 +1,6 @@
 package com.ilvdo.ilvdo_http_android.restclient;
 
+import com.alibaba.fastjson.TypeReference;
 import com.ilvdo.ilvdo_http_android.callback.*;
 import com.ilvdo.ilvdo_http_android.restclient.clients.AbstractRequest;
 import com.ilvdo.ilvdo_http_android.restclient.clients.RequestGet;
@@ -23,7 +24,7 @@ public class RequestFactory {
             , IOnStart ISTART
             , IOnEnd IEND
             , IGetDisposable IGETDISPOSABLE
-            , Class<?> CONVERT_BEAN){
+            , TypeReference CONVERT_BEAN){
         switch (requestType){
             case GET:
                 return new RequestGet(OBJECT_PARAM, URL, FILE, ISUCCESS, IONFAILURE, ISTART, IEND, IGETDISPOSABLE, CONVERT_BEAN);

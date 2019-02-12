@@ -9,6 +9,14 @@ import com.alibaba.fastjson.TypeReference;
  */
 public class ConvertUtil {
 
+    /**
+     * json 转 javabean
+     * 但是在实际使用过程中，通用性不强，无法转换泛形参数
+     * @param s
+     * @param BEAN
+     * @param <T>
+     * @return
+     */
     @Deprecated
     public static  <T> T json2Bean(String s,Class<?> BEAN){
        if(null!=s){
@@ -22,15 +30,14 @@ public class ConvertUtil {
     }
 
     /**
-     * json 转javabean类
+     * json 转javabean类，支持泛形反序列化
      * @param s json字符串
-     * @param type
      * @param <T>
      * @return
      */
-    public static  <T> T json2JavaBean(String s,Class<T> type){
+    public  static   <T> T json2JavaBean(String s,TypeReference<T> typeReference){
         if(null!=s){
-            return JSON.parseObject(s,new TypeReference<T>(type){});
+            return JSON.parseObject(s,typeReference);
         }
         return null;
     }
