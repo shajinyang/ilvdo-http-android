@@ -57,24 +57,26 @@ IlvdoHttp.init(this)
 
 #### 网络请求
 
-快速发起一个get请求示例
+快速发起一个get请求示例（java）
 ```
-RestClient
-            .builder()
-            .type(RestType.GET)
-            .params("param","1")
-            .url("test/test/")
-            .convert(ResponseBean::class.java)
-            .success(object :IOnSuccess<ResponseBean>{
-                override fun onSuccess(t: ResponseBean) {
-
-                }
-            })
-            .build()
+ RestClient
+                .builder()
+                .type(RestType.GET)
+                .params("page", "1")
+                .params("count", "5")
+                .url("")
+                .convertType(new TypeReference<CommonBean<List<ResponseBean>>>(){})
+                .success(new IOnSuccess<CommonBean<List<ResponseBean>>>() {
+                    @Override
+                    public void onSuccess(CommonBean<List<ResponseBean>> responseBean) {
+                        // todo  成功
+                    }
+                })
+                .build();
 ```
 
 
-详细使用方法api
+详细使用方法api（kotlin）
 
 网络请求（键值对传参）
 
@@ -85,7 +87,7 @@ RestClient
             .params("page","1") //键值对传参
             .params("count","5") //键值对传参
             .url("test/test/") //接口路径
-            .convert(ResponseBean::class.java) //接受的实体类
+            .convertType(object : TypeReference<CommonBean<List<ResponseBean>>>() {}) //接受的实体类
             .start(object :IOnStart{
                 override fun onStart() {
                    // todo   请求开始前的逻辑处理
@@ -124,7 +126,7 @@ RestClient
             .type(RestType.GET) //请求方式，可切换 get  post  json 等等
             .objParam(requestBean) //对象传参
             .url("test/test/") //接口路径
-            .convert(ResponseBean::class.java) //接受的实体类
+            .convertType(object : TypeReference<CommonBean<List<ResponseBean>>>() {}) //接受的实体类
             .start(object :IOnStart{
                 override fun onStart() {
                    // todo   请求开始前的逻辑处理
@@ -162,7 +164,7 @@ RestClient
             .type(RestType.JSON) //请求方式，可切换 get  post  json 等等
             .objParam(requestBean) //对象传参
             .url("test/test/") //接口路径
-            .convert(ResponseBean::class.java) //接受的实体类
+            .convertType(object : TypeReference<CommonBean<List<ResponseBean>>>() {}) //接受的实体类
             .start(object :IOnStart{
                 override fun onStart() {
                    // todo   请求开始前的逻辑处理
