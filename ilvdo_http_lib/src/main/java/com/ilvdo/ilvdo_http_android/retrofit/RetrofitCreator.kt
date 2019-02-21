@@ -29,7 +29,9 @@ class RetrofitCreator private constructor(){
         }
 
         fun getParams():WeakHashMap<String,Any>{
-            return ParamsHolder.PARAMS
+            var p=ParamsHolder.PARAMS
+            p.clear()
+            return p
         }
     }
 
