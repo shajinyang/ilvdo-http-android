@@ -13,6 +13,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 import java.io.File;
+import java.util.List;
 import java.util.WeakHashMap;
 
 /**
@@ -25,15 +26,15 @@ public class RestClient {
             RestType requestType
             , Object OBJECT_PARAM
             , String URL
-            , File FILE
+            , List<File> FILES
             , IOnSuccess ISUCCESS
             , IOnFailure IONFAILURE
             , IOnStart ISTART
             , IOnEnd IEND
             , IGetDisposable IGETDISPOSABLE
-            ,TypeReference typeReference
+            , TypeReference typeReference
     ) {
-        RequestFactory.create(requestType, OBJECT_PARAM, URL, FILE, ISUCCESS, IONFAILURE, ISTART, IEND, IGETDISPOSABLE, typeReference)
+        RequestFactory.create(requestType, OBJECT_PARAM, URL, FILES, ISUCCESS, IONFAILURE, ISTART, IEND, IGETDISPOSABLE, typeReference)
                 .start();
     }
 

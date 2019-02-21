@@ -44,21 +44,21 @@ interface ApiService {
      */
     @Multipart
     @POST
-    fun uploadFiles(@Url url:String, @Part parts: List<MultipartBody.Part>)
+    fun uploadFiles(@Url url:String, @Part parts: List<MultipartBody.Part>): Flowable<String>
 
     /**
      * 多文件上传,键值
      */
     @Multipart
     @POST
-    fun uploadFilesMap(@Url url:String, @Part parts: HashMap<String,MultipartBody.Part>)
+    fun uploadFilesMap(@Url url:String, @Part parts: HashMap<String,MultipartBody.Part>): Flowable<String>
 
     /**
      * 多文件混合上传
      */
     @Multipart
     @POST
-    fun uploadMulti(@Url url:String,@PartMap map: Map<String, RequestBody> , @Part parts: List<MultipartBody.Part>)
+    fun uploadMulti(@Url url:String,@PartMap map: Map<String, RequestBody> , @Part parts: List<MultipartBody.Part>): Flowable<String>
 
 
     /**
@@ -66,7 +66,7 @@ interface ApiService {
      */
     @Multipart
     @POST
-    fun uploadMultiMap(@Url url:String,@PartMap map: Map<String, RequestBody> , @Part parts: HashMap<String,MultipartBody.Part>)
+    fun uploadMultiMap(@Url url:String,@PartMap map: Map<String, RequestBody> , @Part parts: HashMap<String,MultipartBody.Part>): Flowable<String>
 
 
 

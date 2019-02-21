@@ -13,19 +13,9 @@ public enum RestType {
     DELETE,
     //单文件上传
     FILE,
-    // 多文件上传
-    FILES,
     //json上传
     JSON,
-    // 单文件参数混合上传
-    FILE_MULTI,
-    //多文件参数混合上传
-    FILES_MULTI,
-    // 单文件参数混合上传，文件为键值的方式
-    FILE_MULTI_MAP,
-    //多文件参数混合上传,文件为键值的方式
-    FILES_MULTI_MAP,
-    // put请求
-    PUT
+    // 文件参数混合上传
+    FILE_MULTI
 
 }

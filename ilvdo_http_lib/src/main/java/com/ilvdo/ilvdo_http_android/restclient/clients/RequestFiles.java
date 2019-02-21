@@ -10,33 +10,47 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.WeakHashMap;
 
 /**
  * Created by sjy on 2018/12/24
- * Describe get 请求
+ * Describe post 请求
  */
-public class RequestGet extends AbstractRequest {
+public class RequestFiles extends AbstractRequest {
 
-    public RequestGet(Object OBJECT_PARAM, String URL, List<File> FILE, IOnSuccess ISUCCESS, IOnFailure IONFAILURE, IOnStart ISTART, IOnEnd IEND, IGetDisposable IGETDISPOSABLE, TypeReference CONVERT_BEAN) {
+    public RequestFiles(Object OBJECT_PARAM, String URL, List<File> FILE, IOnSuccess ISUCCESS, IOnFailure IONFAILURE, IOnStart ISTART, IOnEnd IEND, IGetDisposable IGETDISPOSABLE, TypeReference CONVERT_BEAN) {
         super( OBJECT_PARAM, URL, FILE, ISUCCESS, IONFAILURE, ISTART, IEND, IGETDISPOSABLE, CONVERT_BEAN);
     }
 
     @Override
     public void start() {
+
         if(null!=ISTART){
             ISTART.onStart();
         }
 
         if(null!=OBJECT_PARAM){
-           WeakHashMap<String,Object> hm= ReflectUtil.getFiledsInfo(OBJECT_PARAM);
-           PARAMS.putAll(hm);
+            WeakHashMap<String,Object> hm= ReflectUtil.getFiledsInfo(OBJECT_PARAM);
+            PARAMS.putAll(hm);
+        }
+        List<MultipartBody.Part> parts=new ArrayList<>();
+        if(null!=FILE){
+            for (File file:FILE
+                 ) {
+                RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                MultipartBody.Part part=MultipartBody.Part.createFormData("",file.getName(),requestBody);
+                parts.add(part);
+            }
         }
         Disposable disposable= RetrofitCreator.Companion.getApiService()
-                .get(this.URL, this.PARAMS)
+                .uploadFiles(this.URL, parts)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {

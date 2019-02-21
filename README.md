@@ -30,7 +30,7 @@
 第二步：在module的gradle里配置
 ```
      dependencies {
-         implementation 'com.github.shajinyang:ilvdo-http-android:1.0.3'
+         implementation 'com.github.shajinyang:ilvdo-http-android:1.0.4'
      }
 ```
 
@@ -192,6 +192,24 @@ RestClient
                 }
             })
             .build()
+```
+
+文件上传(kotlin)
+```
+RestClient
+            .builder()
+            .type(RestType.FILE)
+            .file(File(Environment.getExternalStorageDirectory().absolutePath+"/letter.svg"))
+            .file(File(Environment.getExternalStorageDirectory().absolutePath+"/bigger.svg"))
+            .url("http://test.com/api/upload")
+            .convertType(object : TypeReference<CommonBean<String>>() {
+
+            })
+            .success { _ ->
+
+            }
+            .build()
+
 ```
 
 

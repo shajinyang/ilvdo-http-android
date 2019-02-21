@@ -5,6 +5,8 @@ import com.ilvdo.ilvdo_http_android.callback.*;
 import com.ilvdo.ilvdo_http_android.retrofit.RetrofitCreator;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.WeakHashMap;
 
 /**
@@ -13,9 +15,9 @@ import java.util.WeakHashMap;
  */
 public class RestClientBuilder {
     private WeakHashMap<String,Object> PARAMS = RetrofitCreator.Companion.getParams();
+    private List<File> FILES;
     private  Object OBJECT_PARAM;
     private  String URL;
-    private  File FILE;
     private  IOnSuccess ISUCCESS;
     private  IOnFailure IONFAILURE;
     private  IOnStart ISTART;
@@ -51,7 +53,10 @@ public class RestClientBuilder {
     }
 
     public RestClientBuilder file(File file){
-            this.FILE=file;
+        if(FILES==null){
+            FILES=new ArrayList<>();
+        }
+            FILES.add(file);
             return this;
     }
 
@@ -85,7 +90,7 @@ public class RestClientBuilder {
                 REQUEST_TYPE
                 ,OBJECT_PARAM
                 , URL
-                , FILE
+                , FILES
                 , ISUCCESS
                 , IONFAILURE
                 , ISTART

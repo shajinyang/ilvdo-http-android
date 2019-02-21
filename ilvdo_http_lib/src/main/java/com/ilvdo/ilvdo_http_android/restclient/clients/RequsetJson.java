@@ -14,6 +14,7 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Created by sjy on 2018/12/25
@@ -21,7 +22,7 @@ import java.io.File;
  */
 public class RequsetJson extends AbstractRequest {
 
-    public RequsetJson(Object OBJECT_PARAM, String URL, File FILE, IOnSuccess ISUCCESS, IOnFailure IONFAILURE, IOnStart ISTART, IOnEnd IEND, IGetDisposable IGETDISPOSABLE, TypeReference CONVERT_BEAN) {
+    public RequsetJson(Object OBJECT_PARAM, String URL, List<File> FILE, IOnSuccess ISUCCESS, IOnFailure IONFAILURE, IOnStart ISTART, IOnEnd IEND, IGetDisposable IGETDISPOSABLE, TypeReference CONVERT_BEAN) {
         super(OBJECT_PARAM, URL, FILE, ISUCCESS, IONFAILURE, ISTART, IEND, IGETDISPOSABLE, CONVERT_BEAN);
     }
 
