@@ -6,6 +6,7 @@ import com.ilvdo.ilvdo_http_android.restclient.clients.*;
 
 import java.io.File;
 import java.util.List;
+import java.util.WeakHashMap;
 
 /**
  * Created by sjy on 2018/12/24
@@ -13,7 +14,9 @@ import java.util.List;
  */
 public class RequestFactory {
 
-    public static AbstractRequest create(RestType requestType
+    public static AbstractRequest create(
+            WeakHashMap<String,Object> PARAMS
+            ,RestType requestType
             , Object OBJECT_PARAM
             , String URL
             , List<File> FILE

@@ -87,7 +87,8 @@ public class RestClientBuilder {
 
     public RestClient build(){
         return new RestClient(
-                REQUEST_TYPE
+                PARAMS
+                ,REQUEST_TYPE
                 ,OBJECT_PARAM
                 , URL
                 , FILES

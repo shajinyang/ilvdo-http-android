@@ -23,7 +23,8 @@ import java.util.WeakHashMap;
 public class RestClient {
 
     public RestClient(
-            RestType requestType
+            WeakHashMap<String,Object> PARAMS
+            ,RestType requestType
             , Object OBJECT_PARAM
             , String URL
             , List<File> FILES
@@ -34,7 +35,7 @@ public class RestClient {
             , IGetDisposable IGETDISPOSABLE
             , TypeReference typeReference
     ) {
-        RequestFactory.create(requestType, OBJECT_PARAM, URL, FILES, ISUCCESS, IONFAILURE, ISTART, IEND, IGETDISPOSABLE, typeReference)
+        RequestFactory.create(PARAMS,requestType, OBJECT_PARAM, URL, FILES, ISUCCESS, IONFAILURE, ISTART, IEND, IGETDISPOSABLE, typeReference)
                 .start();
     }
 

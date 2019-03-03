@@ -13,7 +13,7 @@ import java.util.WeakHashMap;
  * Describe
  */
 public abstract class AbstractRequest {
-    protected  WeakHashMap<String,Object> PARAMS = RetrofitCreator.Companion.getParams();
+    protected  WeakHashMap<String,Object> PARAMS ;
     protected  Object OBJECT_PARAM;
     protected  String URL;
     protected  List<File> FILE;
@@ -24,7 +24,8 @@ public abstract class AbstractRequest {
     protected  IGetDisposable IGETDISPOSABLE;
     protected  TypeReference CONVERT_BEAN;
 
-    public AbstractRequest( Object OBJECT_PARAM, String URL, List<File> FILE, IOnSuccess ISUCCESS, IOnFailure IONFAILURE, IOnStart ISTART, IOnEnd IEND, IGetDisposable IGETDISPOSABLE, TypeReference CONVERT_BEAN) {
+    public AbstractRequest(WeakHashMap<String,Object> PARAMS , Object OBJECT_PARAM, String URL, List<File> FILE, IOnSuccess ISUCCESS, IOnFailure IONFAILURE, IOnStart ISTART, IOnEnd IEND, IGetDisposable IGETDISPOSABLE, TypeReference CONVERT_BEAN) {
+        this.PARAMS=PARAMS;
         this.OBJECT_PARAM = OBJECT_PARAM;
         this.URL = URL;
         this.FILE = FILE;
