@@ -30,7 +30,7 @@
 第二步：在module的gradle里配置
 ```
      dependencies {
-         implementation 'com.github.shajinyang:ilvdo-http-android:1.0.5'
+         implementation 'com.github.shajinyang:ilvdo-http-android:1.0.6'
      }
 ```
 
