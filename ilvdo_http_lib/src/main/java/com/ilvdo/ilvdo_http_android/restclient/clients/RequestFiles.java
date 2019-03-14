@@ -45,7 +45,7 @@ public class RequestFiles extends AbstractRequest {
             for (File file:FILE
                  ) {
                 RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-                MultipartBody.Part part=MultipartBody.Part.createFormData("",file.getName(),requestBody);
+                MultipartBody.Part part=MultipartBody.Part.createFormData("",System.currentTimeMillis()+file.getName().substring(file.getName().lastIndexOf(".") + 1),requestBody);
                 parts.add(part);
             }
         }
