@@ -78,6 +78,8 @@ class RetrofitCreator private constructor(){
 
         val holder:OkHttpClient = addInterceptor()
             .connectTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
+            .readTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
+            .writeTimeout(TIME_OUT.toLong(), TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
             .build()
     }
